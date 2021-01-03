@@ -24,3 +24,7 @@ Kick off the crawler:
 
 ## EMR
 
+Open SSH tunnel to your instance on Zeppelin's port:
+`ssh -NL 8157:ec2-54-185-168-159.us-west-2.compute.amazonaws.com:8890 hadoop@ec2-54-185-168-159.us-west-2.compute.amazonaws.com`
+
+Open `http://localhost:8157/` in the browser and import TF-IDF.json notebook. Step through code with Shift+Enter
