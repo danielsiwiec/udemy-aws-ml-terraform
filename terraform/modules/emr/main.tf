@@ -1,14 +1,10 @@
-variable "my_ip" {
-  type = string
-}
-
 resource "aws_emr_cluster" "wikipedia" {
 
   name          = "wikipedia"
   applications  = ["Spark", "Zeppelin"]
   release_label = "emr-6.2.0"
   service_role  = aws_iam_role.iam_emr_service_role.arn
-  tags          = var.common_tags
+  tags          = var.tags
 
   master_instance_fleet {
     instance_type_configs {
@@ -22,7 +18,7 @@ resource "aws_emr_cluster" "wikipedia" {
     emr_managed_master_security_group = aws_security_group.allow_ssh.id
     emr_managed_slave_security_group  = aws_security_group.allow_ssh.id
     instance_profile                  = aws_iam_instance_profile.emr_profile.arn
-    key_name                          = aws_key_pair.dans-public-key.key_name
+    key_name                          = var.key_name
   }
 }
 
@@ -198,7 +194,7 @@ resource "aws_security_group" "allow_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.my_ip}/32"]
+    cidr_blocks = ["${var.allowed_ip}/32"]
   }
 
   egress {
@@ -209,9 +205,3 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
-resource "aws_key_pair" "dans-public-key" {
-  key_name   = "dans-public-key"
-  public_key = file("~/.ssh/id_rsa.pub")
-
-  tags = var.common_tags
-}

@@ -27,7 +27,7 @@ resource "aws_iam_role_policy_attachment" "kenisis_analytics_role_attachment" {
 
 resource "aws_iam_role" "kinesis_analytics_role" {
   name = "kinesis_analytics_role"
-  tags = var.common_tags
+  tags = var.tags
 
   assume_role_policy = <<EOF
 {

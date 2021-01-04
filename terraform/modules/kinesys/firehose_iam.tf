@@ -10,8 +10,8 @@ data "aws_iam_policy_document" "kinesis_firehose_policy_document" {
     ]
 
     resources = [
-      aws_s3_bucket.dans-ml.arn,
-      "${aws_s3_bucket.dans-ml.arn}/*",
+      var.bucket_arn,
+      "${var.bucket_arn}/*",
     ]
 
     effect = "Allow"
@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "kenisis_fh_role_attachment" {
 
 resource "aws_iam_role" "firehose_role" {
   name = "firehose_role"
-  tags = var.common_tags
+  tags = var.tags
 
   assume_role_policy = <<EOF
 {

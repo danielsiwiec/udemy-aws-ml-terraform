@@ -28,3 +28,12 @@ Open SSH tunnel to your instance on Zeppelin's port:
 `ssh -NL 8157:ec2-54-185-168-159.us-west-2.compute.amazonaws.com:8890 hadoop@ec2-54-185-168-159.us-west-2.compute.amazonaws.com`
 
 Open `http://localhost:8157/` in the browser and import TF-IDF.json notebook. Step through code with Shift+Enter
+
+
+## Modelling
+
+Open a tunnel to the Jupyter notebook server port. The exact command can be found in the terraform output. 
+`ssh ec2-user@ec2-34-222-235-174.us-west-2.compute.amazonaws.com -L 8888:localhost:8888`
+
+Run:
+`jupyter-notebook` 

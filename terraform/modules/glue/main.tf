@@ -8,10 +8,10 @@ resource "aws_glue_crawler" "ml_glue_crawler" {
   role          = aws_iam_role.glue_crawler.arn
 
   s3_target {
-    path = "s3://${aws_s3_bucket.dans-ml.bucket}"
+    path = "s3://${var.bucket_name}"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }
 
 resource "aws_iam_role_policy" "glue_crawler" {
@@ -29,7 +29,7 @@ resource "aws_iam_role_policy" "glue_crawler" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "${aws_s3_bucket.dans-ml.arn}*"
+          "${var.bucket_arn}*"
         ]
       }
     ]
@@ -61,5 +61,5 @@ resource "aws_iam_role" "glue_crawler" {
   }
   EOF
 
-  tags = var.common_tags
+  tags = var.tags
 }

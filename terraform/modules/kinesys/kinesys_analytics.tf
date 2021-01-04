@@ -1,6 +1,6 @@
 resource "aws_kinesis_analytics_application" "ticker_analytics" {
   name = "ticker_analytics"
-  tags = var.common_tags
+  tags = var.tags
 
 
   inputs {
@@ -79,11 +79,11 @@ EOF
 resource "aws_kinesis_firehose_delivery_stream" "ticker_analytics_demo" {
   name        = "ticker_analytics_demo"
   destination = "extended_s3"
-  tags        = var.common_tags
+  tags        = var.tags
 
   extended_s3_configuration {
     role_arn            = aws_iam_role.firehose_role.arn
-    bucket_arn          = aws_s3_bucket.dans-ml.arn
+    bucket_arn          = var.bucket_arn
     prefix              = "ticker_analytics_demo/"
     error_output_prefix = "ticker_analytics_demo_error/"
     buffer_size         = 1
