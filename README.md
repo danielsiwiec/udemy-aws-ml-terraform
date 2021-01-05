@@ -30,10 +30,15 @@ Open SSH tunnel to your instance on Zeppelin's port:
 Open `http://localhost:8157/` in the browser and import TF-IDF.json notebook. Step through code with Shift+Enter
 
 
-## Modelling
+## Modelling with EC2 and Jupyter
 
 Open a tunnel to the Jupyter notebook server port. The exact command can be found in the terraform output. 
 `ssh ec2-user@ec2-34-222-235-174.us-west-2.compute.amazonaws.com -L 8888:localhost:8888`
 
-Run:
+Run on the instance:
 `jupyter-notebook` 
+
+Open in browser the localhost:8888 link (with token) that was printed out
+
+
+## SageMaker

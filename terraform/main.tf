@@ -28,3 +28,7 @@ module "kinesys" {
   tags = var.common_tags
   bucket_arn = aws_s3_bucket.dans-ml.arn
 }
+
+module "sagemaker" {
+  source = "./modules/sagemaker"
+}
